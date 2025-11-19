@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="306.0" prefWidth="548.0" style="-fx-padding: 15;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vistaObjetoController">
+   <children>
+      <BorderPane prefHeight="94.0" prefWidth="570.0">
+         <left>
+            <VBox prefHeight="124.0" prefWidth="256.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="570.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ID_OBJETO :" wrappingWidth="118.13671875">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="id_objeto" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="570.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="NOMBRE :" wrappingWidth="118.13671875">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="nombre_objeto" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </left>
+         <right>
+            <VBox prefHeight="94.0" prefWidth="219.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="570.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ALTO :" wrappingWidth="73.13671875">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="altura" prefHeight="25.0" prefWidth="151.0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="570.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ANCHO :" wrappingWidth="73.13671875">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="anchura" prefHeight="25.0" prefWidth="246.0" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </right>
+      </BorderPane>
+      <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="518.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="DESCRIPCION :" wrappingWidth="118.13671875">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <TextArea fx:id="descripcion" prefHeight="58.0" prefWidth="399.0" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" prefHeight="103.0" prefWidth="518.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ARCHIVO :" wrappingWidth="118.13671875">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <TextField fx:id="archivo" prefHeight="25.0" prefWidth="132.0" />
+            <ImageView fx:id="imagen" fitHeight="117.0" fitWidth="258.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </HBox>
+   </children>
+</VBox>

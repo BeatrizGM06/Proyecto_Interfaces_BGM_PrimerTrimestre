@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pantallaPrincipal.MainController">
+   <left>
+      <VBox alignment="CENTER" prefHeight="353.0" prefWidth="142.0" style="-fx-spacing: 10;" BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" onAction="#mostrarVentanaObjetos" prefHeight="80.0" prefWidth="123.0" style="-fx-padding: 20;" text="OBJETO" />
+            <Button mnemonicParsing="false" onAction="#mostrarVentanaHabitacion" prefHeight="80.0" prefWidth="123.0" style="-fx-padding: 20;" text="HABITACIÓN" />
+            <Button mnemonicParsing="false" onAction="#mostrarVentanaLocalizacion" prefHeight="80.0" prefWidth="123.0" style="-fx-padding: 20;" text="LOCALIZACIÓN" />
+         </children>
+      </VBox>
+   </left>
+   <top>
+      <MenuBar prefHeight="35.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="OPCIONES">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#addButton" text="Añadir" />
+                  <MenuItem fx:id="menuItemBorrar" disable="true" mnemonicParsing="false" onAction="#deleteButton" text="Borrar" />
+                  <MenuItem fx:id="menuItemEditar" disable="true" mnemonicParsing="false" onAction="#editButton" text="Editar" />
+                  <MenuItem fx:id="menuItemVer" disable="true" mnemonicParsing="false" onAction="#viewButton" text="Ver" />
+            </items>
+               <graphic>
+                  <ImageView fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@ejemplo.png" />
+                     </image></ImageView>
+               </graphic>
+          </Menu>
+          <Menu fx:id="menuEditar" disable="true" mnemonicParsing="false" onAction="#editButton" text="EDITAR">
+               <graphic>
+                  <ImageView fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@ejemplo.png" />
+                     </image></ImageView>
+               </graphic>
+          </Menu>
+          <Menu fx:id="menuVer" disable="true" mnemonicParsing="false" onAction="#viewButton" text="VER">
+               <graphic>
+                  <ImageView fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@ejemplo.png" />
+                     </image></ImageView>
+               </graphic>
+          </Menu>
+            <Menu mnemonicParsing="false" text="AYUDA">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#mostrarAccesibilidad" text="ACCESIBILIDAD" />
+                  <MenuItem mnemonicParsing="false" onAction="#preguntasFrecuentes" text="PREGUNTAS FRECUENTES" />
+                  <MenuItem mnemonicParsing="false" onAction="#reportarIncidente" text="REPORTAR INCIDENTE" />
+               </items>
+               <graphic>
+                  <ImageView fitHeight="39.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@ejemplo.png" />
+                     </image></ImageView>
+               </graphic>
+            </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="38.0" prefWidth="458.0" style="-fx-padding: 10;">
+               <children>
+                  <Button id="botonBorrar" fx:id="botonBorrar" disable="true" mnemonicParsing="false" onAction="#deleteButton" onMouseClicked="#deleteButton" text="BORRAR">
+                     <graphic>
+                        <ImageView fitHeight="13.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@ejemplo.png" />
+                           </image></ImageView>
+                     </graphic></Button>
+                  <Button id="botonAdd" mnemonicParsing="false" onAction="#addButton" onMouseClicked="#addButton" text="AÑADIR">
+                     <graphic>
+                        <ImageView fitHeight="13.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@ejemplo.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+               </children>
+            </HBox>
+            <StackPane id="selectorPantalla" prefHeight="297.0" prefWidth="440.0">
+               <children>
+                  <Pane id="pantallaObjeto" fx:id="pantallaObjeto" prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <TableView id="tablaObjeto" fx:id="tablaObjeto" prefHeight="296.0" prefWidth="448.0">
+                          <columns>
+                              <TableColumn fx:id="columnaVerObjeto" prefWidth="39.0" text="Ver" />
+                              <TableColumn fx:id="columnaEditarObjeto" prefWidth="39.0" text="Editar" />
+                            <TableColumn fx:id="columnaIdObjeto" prefWidth="51.0" text="Id" />
+                            <TableColumn fx:id="columnaNombreObjeto" prefWidth="84.0" text="Nombre" />
+                              <TableColumn fx:id="columnaAltoObjeto" prefWidth="47.0" text="Alto" />
+                              <TableColumn fx:id="columnaAnchoObjeto" prefWidth="43.0" text="Ancho" />
+                              <TableColumn fx:id="columnaDescripcionObjeto" prefWidth="144.0" text="Descripción" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </Pane>
+                  <Pane id="pantallaHabitacion" fx:id="pantallaHabitacion" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <TableView id="tablaHabitacion" fx:id="tablaHabitacion" prefHeight="296.0" prefWidth="448.0">
+                           <columns>
+                              <TableColumn fx:id="columnaVerHabitacion" prefWidth="39.0" text="Ver" />
+                              <TableColumn fx:id="columnaEditarHabitacion" prefWidth="39.0" text="Editar" />
+                              <TableColumn fx:id="columnaIdHabitacion" prefWidth="42.0" text="Id" />
+                              <TableColumn fx:id="columnaNumeroHabitacion" prefWidth="108.0" text="Nº Habitación" />
+                              <TableColumn fx:id="columnaPasilloHabitacion" prefWidth="74.0" text="Pasillo" />
+                              <TableColumn fx:id="columnaEmocionHabitacion" prefWidth="95.0" text="Emoción" />
+                              <TableColumn fx:id="columnaAbiertaHabitacion" prefWidth="50.0" text="Abierta" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </Pane>
+                  <Pane id="pantallaLocalizacion" fx:id="pantallaLocalizacion" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <TableView id="tablaLocalizacion" fx:id="tablaLocalizacion" prefHeight="296.0" prefWidth="448.0">
+                           <columns>
+                              <TableColumn fx:id="columnaVerLocalizacion" prefWidth="39.0" text="Ver" />
+                              <TableColumn fx:id="columnaEditarLocalizacion" prefWidth="39.0" text="Editar" />
+                              <TableColumn fx:id="columnaObjetoLocalizacion" prefWidth="62.0" text="Objeto" />
+                              <TableColumn fx:id="columnaHabitacionLocalizacion" prefWidth="79.0" text="Habitacion" />
+                              <TableColumn fx:id="columnaPosicionX" prefWidth="77.0" text="Posicion X" />
+                              <TableColumn fx:id="columnaPosicionY" minWidth="7.0" prefWidth="65.0" text="Posicion Y" />
+                              <TableColumn fx:id="columnaInteractuable" prefWidth="86.0" text="Interactuable" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </Pane>
+               </children>
+            </StackPane>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>
