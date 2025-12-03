@@ -22,7 +22,7 @@
                               <Font size="14.0" />
                            </font>
                         </Text>
-                        <TextField fx:id="id_habitacion" />
+                        <TextField fx:id="id_habitacion" editable="false" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="570.0">
@@ -48,7 +48,7 @@
                               <Font size="14.0" />
                            </font>
                         </Text>
-                        <TextField fx:id="num_habitacion" prefHeight="25.0" prefWidth="151.0" />
+                        <TextField fx:id="num_habitacion" editable="false" prefHeight="25.0" prefWidth="151.0" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="570.0">
@@ -58,7 +58,7 @@
                               <Font size="14.0" />
                            </font>
                         </Text>
-                        <TextField fx:id="num_pasillo" prefHeight="25.0" prefWidth="246.0" />
+                        <TextField fx:id="num_pasillo" editable="false" prefHeight="25.0" prefWidth="246.0" />
                      </children>
                   </HBox>
                </children>
@@ -86,7 +86,7 @@
                   <Font size="14.0" />
                </font>
             </Text>
-            <TextArea fx:id="descripcion" prefHeight="18.0" prefWidth="399.0" />
+            <TextArea fx:id="descripcion" editable="false" prefHeight="18.0" prefWidth="399.0" />
          </children>
       </HBox>
    </children>

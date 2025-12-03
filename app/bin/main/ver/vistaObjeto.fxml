@@ -22,7 +22,7 @@
                               <Font size="14.0" />
                            </font>
                         </Text>
-                        <TextField fx:id="id_objeto" />
+                        <TextField fx:id="id_objeto" editable="false" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="570.0">
@@ -32,7 +32,7 @@
                               <Font size="14.0" />
                            </font>
                         </Text>
-                        <TextField fx:id="nombre_objeto" />
+                        <TextField fx:id="nombre_objeto" editable="false" />
                      </children>
                   </HBox>
                </children>
@@ -48,7 +48,7 @@
                               <Font size="14.0" />
                            </font>
                         </Text>
-                        <TextField fx:id="altura" prefHeight="25.0" prefWidth="151.0" />
+                        <TextField fx:id="altura" editable="false" prefHeight="25.0" prefWidth="151.0" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="570.0">
@@ -58,7 +58,7 @@
                               <Font size="14.0" />
                            </font>
                         </Text>
-                        <TextField fx:id="anchura" prefHeight="25.0" prefWidth="246.0" />
+                        <TextField fx:id="anchura" editable="false" prefHeight="25.0" prefWidth="246.0" />
                      </children>
                   </HBox>
                </children>
@@ -72,7 +72,7 @@
                   <Font size="14.0" />
                </font>
             </Text>
-            <TextArea fx:id="descripcion" prefHeight="58.0" prefWidth="399.0" />
+            <TextArea fx:id="descripcion" editable="false" prefHeight="58.0" prefWidth="399.0" />
          </children>
       </HBox>
       <HBox alignment="CENTER_LEFT" prefHeight="103.0" prefWidth="518.0">
@@ -82,7 +82,7 @@
                   <Font size="14.0" />
                </font>
             </Text>
-            <TextField fx:id="archivo" prefHeight="25.0" prefWidth="132.0" />
+            <TextField fx:id="archivo" editable="false" prefHeight="25.0" prefWidth="132.0" />
             <ImageView fx:id="imagen" fitHeight="117.0" fitWidth="258.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </HBox>

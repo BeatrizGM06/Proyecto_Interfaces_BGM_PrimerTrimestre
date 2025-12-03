@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -10,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="279.0" prefWidth="548.0" style="-fx-padding: 15;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="crearEditarHabitacion">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="217.0" prefWidth="548.0" style="-fx-padding: 15;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pantallaCrearOEditar.crearEditarHabitacion">
    <children>
       <BorderPane prefHeight="89.0" prefWidth="518.0">
          <left>
@@ -23,7 +22,7 @@
                               <Font size="14.0" />
                            </font>
                         </Text>
-                        <TextField fx:id="id_habitacion" />
+                        <TextField fx:id="id_habitacion" editable="false" promptText="Rellenado automático" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="570.0">
@@ -78,16 +77,6 @@
                   <Font size="14.0" />
                </font>
             </CheckBox>
-         </children>
-      </HBox>
-      <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="518.0">
-         <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="DESCRIPCION :" wrappingWidth="118.13671875">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Text>
-            <TextArea fx:id="descripcion" prefHeight="18.0" prefWidth="399.0" />
          </children>
       </HBox>
       <HBox alignment="BOTTOM_RIGHT" prefHeight="45.0" prefWidth="518.0">

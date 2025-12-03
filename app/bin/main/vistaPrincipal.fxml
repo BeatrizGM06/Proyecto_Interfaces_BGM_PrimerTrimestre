@@ -78,14 +78,14 @@
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="38.0" prefWidth="458.0" style="-fx-padding: 10;">
                <children>
-                  <Button id="botonBorrar" fx:id="botonBorrar" disable="true" mnemonicParsing="false" onAction="#deleteButton" onMouseClicked="#deleteButton" text="BORRAR">
+                  <Button id="botonBorrar" fx:id="botonBorrar" disable="true" mnemonicParsing="false" onAction="#deleteButton" text="BORRAR">
                      <graphic>
                         <ImageView fitHeight="13.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@ejemplo.png" />
                            </image></ImageView>
                      </graphic></Button>
-                  <Button id="botonAdd" mnemonicParsing="false" onAction="#addButton" onMouseClicked="#addButton" text="AÑADIR">
+                  <Button id="botonAdd" mnemonicParsing="false" onAction="#addButton" text="AÑADIR">
                      <graphic>
                         <ImageView fitHeight="13.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -101,10 +101,9 @@
                      <children>
                         <TableView id="tablaObjeto" fx:id="tablaObjeto" prefHeight="296.0" prefWidth="448.0">
                           <columns>
-                              <TableColumn fx:id="columnaVerObjeto" prefWidth="39.0" text="Ver" />
-                              <TableColumn fx:id="columnaEditarObjeto" prefWidth="39.0" text="Editar" />
-                            <TableColumn fx:id="columnaIdObjeto" prefWidth="51.0" text="Id" />
-                            <TableColumn fx:id="columnaNombreObjeto" prefWidth="84.0" text="Nombre" />
+                              <TableColumn fx:id="columnaAccionObjeto" prefWidth="95.0" text="Acciones" />
+                            <TableColumn fx:id="columnaIdObjeto" prefWidth="42.0" text="Id" />
+                            <TableColumn fx:id="columnaNombreObjeto" prefWidth="76.0" text="Nombre" />
                               <TableColumn fx:id="columnaAltoObjeto" prefWidth="47.0" text="Alto" />
                               <TableColumn fx:id="columnaAnchoObjeto" prefWidth="43.0" text="Ancho" />
                               <TableColumn fx:id="columnaDescripcionObjeto" prefWidth="144.0" text="Descripción" />
@@ -116,10 +115,9 @@
                      <children>
                         <TableView id="tablaHabitacion" fx:id="tablaHabitacion" prefHeight="296.0" prefWidth="448.0">
                            <columns>
-                              <TableColumn fx:id="columnaVerHabitacion" prefWidth="39.0" text="Ver" />
-                              <TableColumn fx:id="columnaEditarHabitacion" prefWidth="39.0" text="Editar" />
-                              <TableColumn fx:id="columnaIdHabitacion" prefWidth="42.0" text="Id" />
-                              <TableColumn fx:id="columnaNumeroHabitacion" prefWidth="108.0" text="Nº Habitación" />
+                              <TableColumn fx:id="columnaAccionHabitacion" prefWidth="96.0" text="Acciones" />
+                              <TableColumn fx:id="columnaIdHabitacion" prefWidth="35.0" text="Id" />
+                              <TableColumn fx:id="columnaNumeroHabitacion" prefWidth="97.0" text="Nº Habitación" />
                               <TableColumn fx:id="columnaPasilloHabitacion" prefWidth="74.0" text="Pasillo" />
                               <TableColumn fx:id="columnaEmocionHabitacion" prefWidth="95.0" text="Emoción" />
                               <TableColumn fx:id="columnaAbiertaHabitacion" prefWidth="50.0" text="Abierta" />
@@ -131,13 +129,12 @@
                      <children>
                         <TableView id="tablaLocalizacion" fx:id="tablaLocalizacion" prefHeight="296.0" prefWidth="448.0">
                            <columns>
-                              <TableColumn fx:id="columnaVerLocalizacion" prefWidth="39.0" text="Ver" />
-                              <TableColumn fx:id="columnaEditarLocalizacion" prefWidth="39.0" text="Editar" />
-                              <TableColumn fx:id="columnaObjetoLocalizacion" prefWidth="62.0" text="Objeto" />
-                              <TableColumn fx:id="columnaHabitacionLocalizacion" prefWidth="79.0" text="Habitacion" />
-                              <TableColumn fx:id="columnaPosicionX" prefWidth="77.0" text="Posicion X" />
-                              <TableColumn fx:id="columnaPosicionY" minWidth="7.0" prefWidth="65.0" text="Posicion Y" />
-                              <TableColumn fx:id="columnaInteractuable" prefWidth="86.0" text="Interactuable" />
+                              <TableColumn fx:id="columnaAccionLocalizacion" prefWidth="88.0" text="Acciones" />
+                              <TableColumn fx:id="columnaObjetoLocalizacion" prefWidth="47.0" text="Objeto" />
+                              <TableColumn fx:id="columnaHabitacionLocalizacion" prefWidth="75.0" text="Habitacion" />
+                              <TableColumn fx:id="columnaPosicionX" prefWidth="72.0" text="Posicion X" />
+                              <TableColumn fx:id="columnaPosicionY" minWidth="7.0" prefWidth="72.0" text="Posicion Y" />
+                              <TableColumn fx:id="columnaInteractuable" prefWidth="93.0" text="Interactuable" />
                            </columns>
                         </TableView>
                      </children>
