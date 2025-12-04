@@ -106,25 +106,18 @@ public class crearEditarLocalizacion implements Initializable {
         posX.setText(""+localizacion.getPosicion_x());
         posY.setText(""+localizacion.getPosicion_y());
 
-        id_habitacion.setItems(listaHabitaciones);
-        System.out.println("Habitaciones cargadas");
-        System.out.println("Lista Habitaciones: "+listaHabitaciones);
-
-        id_objeto.setItems(listaObjetos);
-        System.out.println("Objetos cargados");
-        System.out.println("Lista Habitaciones: "+listaObjetos);
+        
     }
 
     public void setEditar(boolean editar){
         this.editar = editar;
-
-        if(editar && localizacion != null){
-            cargarDatos();
-        }
     }
 
     public void setLocalizacion(Localizacion localizacion){
-        this.localizacion = localizacion;        
+        this.localizacion = localizacion;       
+        if(editar){
+            cargarDatos();
+        } 
     }
 
     public void setEnlace(MainController mainController){
@@ -152,6 +145,14 @@ public class crearEditarLocalizacion implements Initializable {
         //TODO RELLENAR COMBO
         listaHabitaciones.setAll(rellenarListaHabitaciones());
         listaObjetos.setAll(rellenarListaObjetos());
+
+        id_habitacion.setItems(listaHabitaciones);
+        System.out.println("Habitaciones cargadas");
+        System.out.println("Lista Habitaciones: "+listaHabitaciones);
+
+        id_objeto.setItems(listaObjetos);
+        System.out.println("Objetos cargados");
+        System.out.println("Lista Habitaciones: "+listaObjetos);
 
     }
 

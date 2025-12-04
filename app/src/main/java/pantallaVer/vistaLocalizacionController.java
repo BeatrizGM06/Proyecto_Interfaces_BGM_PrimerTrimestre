@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import pantallaPrincipal.Localizacion;
 
@@ -17,10 +18,10 @@ public class vistaLocalizacionController implements Initializable {
     private CheckBox checkbox_interactuable;
 
     @FXML
-    private ChoiceBox<?> habitacion;
+    private ComboBox<String> habitacion;
 
     @FXML
-    private ChoiceBox<?> objeto;
+    private ComboBox<String> objeto;
 
     @FXML
     private TextField posX;

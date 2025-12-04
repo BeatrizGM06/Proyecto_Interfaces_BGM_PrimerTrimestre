@@ -33,7 +33,7 @@
                               <Font size="14.0" />
                            </font>
                         </Text>
-                        <ComboBox fx:id="id_habitacion1" layoutX="129.0" layoutY="20.0" onAction="#abrirBuscadorHabitaciones" prefWidth="150.0" />
+                        <ComboBox fx:id="id_habitacion" layoutX="129.0" layoutY="20.0" onAction="#abrirBuscadorHabitaciones" prefWidth="150.0" />
                      </children>
                   </HBox>
                </children>
