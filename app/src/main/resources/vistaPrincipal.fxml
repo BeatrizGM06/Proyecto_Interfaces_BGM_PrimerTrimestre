@@ -39,19 +39,6 @@
                      </image></ImageView>
                </graphic>
           </Menu>
-            <Menu mnemonicParsing="false" text="AYUDA">
-               <items>
-                  <MenuItem mnemonicParsing="false" onAction="#mostrarAccesibilidad" text="ACCESIBILIDAD" />
-                  <MenuItem mnemonicParsing="false" onAction="#preguntasFrecuentes" text="PREGUNTAS FRECUENTES" />
-                  <MenuItem mnemonicParsing="false" onAction="#reportarIncidente" text="REPORTAR INCIDENTE" />
-               </items>
-               <graphic>
-                  <ImageView fitHeight="39.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@ejemplo.png" />
-                     </image></ImageView>
-               </graphic>
-            </Menu>
         </menus>
       </MenuBar>
    </top>

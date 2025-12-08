@@ -72,7 +72,7 @@ public class crearEditarObjeto implements Initializable{
 
     private void crearNuevoObjeto(){
         try {
-            objetoNuevo = new Objeto(0,
+            objetoNuevo = new Objeto(objeto==null?0:objeto.getId_objeto(),
                                         nombre_objeto.getText().toUpperCase(),
                                         archivo.getText().toUpperCase(),
                                         descripcion.getText().toUpperCase(),
@@ -111,7 +111,6 @@ public class crearEditarObjeto implements Initializable{
         nombre_objeto.setText(objeto.getNombre_objeto());
         descripcion.setText(objeto.getDescripcion());
         archivo.setText(objeto.getArchivo_objeto());
-
     }
 
     public void setObjeto(Objeto objeto){
@@ -128,7 +127,7 @@ public class crearEditarObjeto implements Initializable{
 
     private void enviarObjeto(){
         if(mainController!=null){
-            this.mainController.recibirObjeto(objetoNuevo);
+            this.mainController.recibirObjeto(objetoNuevo,editar);
         }
     }
 

@@ -151,21 +151,6 @@ public class MainController implements Initializable {
     @FXML
     private TableColumn<Objeto, HBox> columnaAccionObjeto;
 
-    @FXML
-    void preguntasFrecuentes(ActionEvent event) {
-        //TODO ABRIR PÁGINA DE PREGUNTAS FRECUENTES
-    }
-
-    @FXML
-    void reportarIncidente(ActionEvent event) {
-        //TODO ABRIR PANTALLA DE REPORTAR ACCIDENTE
-    }
-
-    @FXML
-    void mostrarAccesibilidad(ActionEvent event) {
-        //TODO mostrar la pantalla de accesibilidad
-    }
-
     //Definimos una instancia del otro Stage (solo uno porque no habrá más de 2 ventanas abiertas simultaneamente)
     Stage stageB;
 
@@ -183,9 +168,6 @@ public class MainController implements Initializable {
         }else{
             System.out.println("No se encuentra la tabla actual");
         }
-
-        //TODO QUE FUNCIONE PARA TODAS LAS TABLAS
-        // Sacar el objeto seleccionado del tableview
         
 
         cargarDatosTabla();
@@ -222,6 +204,7 @@ public class MainController implements Initializable {
     }
 
     private void borrarLocalizacion(){
+        //TODO
         Localizacion localizacionSeleccionada = tablaLocalizacion.getSelectionModel().getSelectedItem();
 
         int idHabitacion = localizacionSeleccionada.getHabitacion();
@@ -238,11 +221,11 @@ public class MainController implements Initializable {
                 alert.setContentText("¿Deseas borrar la localización?");
                 ButtonType resultado=alert.showAndWait().orElse(ButtonType.CANCEL);
             if(resultado == javafx.scene.control.ButtonType.OK){
-                String query = "DELETE FROM Localizacion WHERE id_objeto=? AND id_habitacion=?";
+                String query = "DELETE FROM Localizacion WHERE fk_objeto=? AND fk_habitacion=?";
                 try {
                     PreparedStatement preparedStatement = this.conexion.prepareStatement(query);
                     preparedStatement.setInt(1, idObjeto);
-                    preparedStatement.setInt(1, idHabitacion);
+                    preparedStatement.setInt(2, idHabitacion);
                     preparedStatement.executeUpdate();
                 } catch (SQLException e) {
                     System.out.println("Excepción: " + e.getMessage());
@@ -300,9 +283,6 @@ public class MainController implements Initializable {
         }else{
             System.out.println("Error: No se encuentra la tabla activa");
         }
-
-
-        //TODO ACTUALIZAR AUTOMATICAMENTE
 
         cargarDatosTabla();
     }
@@ -593,7 +573,6 @@ public class MainController implements Initializable {
     }
 
     //------------------------------------------------------------
-    //AUXILIARES
 
     public void cargarObjetos() {
         tablaObjeto.setItems(dameListaObjetos());
@@ -736,7 +715,7 @@ public class MainController implements Initializable {
 
         Scene escena = new Scene(root);
         stageB = new Stage();
-        stageB.initModality(Modality.APPLICATION_MODAL);
+        //stageB.initModality(Modality.APPLICATION_MODAL); Para poder buscar en los demás apartados, a este en concreto no le pongo modal
         stageB.setResizable(false);
         stageB.setScene(escena);
         stageB.setTitle("Editar Localización");
@@ -814,48 +793,101 @@ public class MainController implements Initializable {
     }
 
     //FUNCIONES QUE SE ACTIVAN DESDE LOS CONTROLADORES -----------
-    public void recibirObjeto(Objeto objeto){
-        String query = "INSERT INTO Objeto(nombre_objeto,archivo_objeto,descripcion,alto,ancho) VALUES (?, ?, ?, ?, ?)";
-        try {
-            PreparedStatement preparedStatement = this.conexion.prepareStatement(query);
-            preparedStatement.setString(1, objeto.getNombre_objeto());
-            preparedStatement.setString(2, objeto.getArchivo_objeto());
-            preparedStatement.setString(3, objeto.getDescripcion());
-            preparedStatement.setInt(4, objeto.getAlto());
-            preparedStatement.setInt(5, objeto.getAncho());
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println("Excepción: " + e.getMessage());
+    public void recibirObjeto(Objeto objeto, boolean editar){
+        if(editar){
+            String query = "UPDATE Objeto SET nombre_objeto=?,archivo_objeto=?,descripcion=?,alto=?,ancho=? WHERE id_objeto=?";
+            try {
+                PreparedStatement preparedStatement = this.conexion.prepareStatement(query);
+                preparedStatement.setString(1, objeto.getNombre_objeto());
+                preparedStatement.setString(2, objeto.getArchivo_objeto());
+                preparedStatement.setString(3, objeto.getDescripcion());
+                preparedStatement.setInt(4, objeto.getAlto());
+                preparedStatement.setInt(5, objeto.getAncho());
+                preparedStatement.setInt(6, objeto.getId_objeto());
+                preparedStatement.executeUpdate();
+            } catch (Exception e) {
+                System.out.println("Excepción: " + e.getMessage());
+            }
+
+        }else{
+            String query = "INSERT INTO Objeto(nombre_objeto,archivo_objeto,descripcion,alto,ancho) VALUES (?, ?, ?, ?, ?)";
+            try {
+                PreparedStatement preparedStatement = this.conexion.prepareStatement(query);
+                preparedStatement.setString(1, objeto.getNombre_objeto());
+                preparedStatement.setString(2, objeto.getArchivo_objeto());
+                preparedStatement.setString(3, objeto.getDescripcion());
+                preparedStatement.setInt(4, objeto.getAlto());
+                preparedStatement.setInt(5, objeto.getAncho());
+                preparedStatement.executeUpdate();
+            } catch (SQLException e) {
+                System.out.println("Excepción: " + e.getMessage());
+            }
         }
+
+        cargarDatosTabla();
     }
 
-    public void recibirLocalizacion(Localizacion localizacion){
-        String query = "INSERT INTO Localizacion(fk_objeto,fk_habitacion,posicion_x,posicion_y,interactuable) VALUES (?, ?, ?, ?, ?)";
-        try {
-            PreparedStatement preparedStatement = this.conexion.prepareStatement(query);
-            preparedStatement.setInt(1, localizacion.getObjeto());
-            preparedStatement.setInt(2, localizacion.getHabitacion());
-            preparedStatement.setInt(3, localizacion.getPosicion_x());
-            preparedStatement.setInt(4, localizacion.getPosicion_y());
-            preparedStatement.setBoolean(5, localizacion.getInteractuable());
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println("Excepción: " + e.getMessage());
+    public void recibirLocalizacion(Localizacion localizacion, Localizacion localizacionAnterior, boolean editar){
+        if(editar){
+            String query = "UPDATE Localizacion SET fk_objeto=?,fk_habitacion=?,posicion_x=?,posicion_y=?,interactuable=? WHERE fk_objeto=? AND fk_habitacion=?";
+            try {
+                PreparedStatement preparedStatement = this.conexion.prepareStatement(query);
+                preparedStatement.setInt(1, localizacion.getObjeto());
+                preparedStatement.setInt(2, localizacion.getHabitacion());
+                preparedStatement.setInt(3, localizacion.getPosicion_x());
+                preparedStatement.setInt(4, localizacion.getPosicion_y());
+                preparedStatement.setBoolean(5, localizacion.getInteractuable());
+                preparedStatement.setInt(6, localizacionAnterior.getObjeto());
+                preparedStatement.setInt(7, localizacionAnterior.getHabitacion());
+                preparedStatement.executeUpdate();
+            } catch (SQLException e) {
+                System.out.println("Excepción: " + e.getMessage());
+            }
+        }else{
+            String query = "INSERT INTO Localizacion(fk_objeto,fk_habitacion,posicion_x,posicion_y,interactuable) VALUES (?, ?, ?, ?, ?)";
+            try {
+                PreparedStatement preparedStatement = this.conexion.prepareStatement(query);
+                preparedStatement.setInt(1, localizacion.getObjeto());
+                preparedStatement.setInt(2, localizacion.getHabitacion());
+                preparedStatement.setInt(3, localizacion.getPosicion_x());
+                preparedStatement.setInt(4, localizacion.getPosicion_y());
+                preparedStatement.setBoolean(5, localizacion.getInteractuable());
+                preparedStatement.executeUpdate();
+            } catch (SQLException e) {
+                System.out.println("Excepción: " + e.getMessage());
+            }
         }
+        cargarDatosTabla();
     }
 
-    public void recibirHabitacion(Habitacion habitacion){
-        String query = "INSERT INTO Habitacion(num_habitacion, fk_numPasillo, fk_nombreEmocion, abierta) VALUES (?, ?, ?, ?)";
-        try {
-            PreparedStatement preparedStatement = this.conexion.prepareStatement(query);
-            preparedStatement.setInt(1, habitacion.getNum_Habitacion());
-            preparedStatement.setInt(2, habitacion.getNumPasillo());
-            preparedStatement.setString(3, habitacion.getFk_NombreEmocion());
-            preparedStatement.setBoolean(4, habitacion.getAbierta());
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println("Excepción: " + e.getMessage());
+    public void recibirHabitacion(Habitacion habitacion, boolean editar){
+        if(editar){
+            String query = "UPDATE Habitacion SET num_habitacion=?,fk_numPasillo=?,fk_nombreEmocion=?,abierta=? WHERE id_habitacion=?";
+            try {
+                PreparedStatement preparedStatement = this.conexion.prepareStatement(query);
+                preparedStatement.setInt(1, habitacion.getNum_Habitacion());
+                preparedStatement.setInt(2, habitacion.getNumPasillo());
+                preparedStatement.setString(3, habitacion.getFk_NombreEmocion());
+                preparedStatement.setBoolean(4, habitacion.getAbierta());
+                preparedStatement.setInt(5,habitacion.getId_Habitacion());
+                preparedStatement.executeUpdate();
+            } catch (SQLException e) {
+                System.out.println("Excepción: " + e.getMessage());
+            }
+        }else{
+            String query = "INSERT INTO Habitacion(num_habitacion, fk_numPasillo, fk_nombreEmocion, abierta) VALUES (?, ?, ?, ?)";
+            try {
+                PreparedStatement preparedStatement = this.conexion.prepareStatement(query);
+                preparedStatement.setInt(1, habitacion.getNum_Habitacion());
+                preparedStatement.setInt(2, habitacion.getNumPasillo());
+                preparedStatement.setString(3, habitacion.getFk_NombreEmocion());
+                preparedStatement.setBoolean(4, habitacion.getAbierta());
+                preparedStatement.executeUpdate();
+            } catch (SQLException e) {
+                System.out.println("Excepción: " + e.getMessage());
+            }
         }
+        cargarDatosTabla();
     }
 
     //INITIALIZE -------------------------------------------------

@@ -74,7 +74,7 @@ public class crearEditarHabitacion implements Initializable {
 
     private void crearNuevaHabitacion(){
         try {
-            habitacionNueva = new Habitacion(0, //Un número cualquiera puesto que la base de datos cambiará el valor
+            habitacionNueva = new Habitacion(habitacion==null?0:habitacion.getId_Habitacion(), //Un número cualquiera puesto que la base de datos cambiará el valor
                                             Integer.parseInt(num_habitacion.getText()),
                                             Integer.parseInt(num_pasillo.getText()),
                                             nombre_emocion.getText().toUpperCase(),
@@ -129,7 +129,7 @@ public class crearEditarHabitacion implements Initializable {
 
     private void enviarHabitacion(){
         if(mainController!=null){
-            this.mainController.recibirHabitacion(habitacionNueva);
+            this.mainController.recibirHabitacion(habitacionNueva,editar);
         }
     }
 

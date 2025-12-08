@@ -25,17 +25,17 @@ public class crearEditarLocalizacion implements Initializable {
     private MainController mainController;
     private Localizacion localizacionNueva;
 
-    private ObservableList<String> listaObjetos = FXCollections.observableArrayList();
-    private ObservableList<String> listaHabitaciones = FXCollections.observableArrayList();
+    private ObservableList<Integer> listaObjetos = FXCollections.observableArrayList();
+    private ObservableList<Integer> listaHabitaciones = FXCollections.observableArrayList();
 
      @FXML
     private CheckBox check_interactuable;
 
     @FXML
-    private ComboBox<String> id_habitacion;
+    private ComboBox<Integer> id_habitacion;
 
     @FXML
-    private ComboBox<String> id_objeto;
+    private ComboBox<Integer> id_objeto;
 
     @FXML
     private TextField posX;
@@ -74,8 +74,8 @@ public class crearEditarLocalizacion implements Initializable {
 
     private void crearNuevaLocalizacion(){
         try {
-            localizacionNueva = new Localizacion(pasarListaObjetoAID(id_objeto.getSelectionModel().getSelectedItem()), //TODO SACAR VALOR DEL COMBO
-                                                pasarListaHabitacionAID(id_habitacion.getSelectionModel().getSelectedItem()), //TODO SACAR VALOR DEL COMBO
+            localizacionNueva = new Localizacion(id_objeto.getSelectionModel().getSelectedItem(),
+                                                id_habitacion.getSelectionModel().getSelectedItem(),
                                                 Integer.parseInt(posX.getText()),
                                                 Integer.parseInt(posY.getText()),
                                                 check_interactuable.isSelected());
@@ -106,7 +106,20 @@ public class crearEditarLocalizacion implements Initializable {
         posX.setText(""+localizacion.getPosicion_x());
         posY.setText(""+localizacion.getPosicion_y());
 
-        
+        if(localizacion!=null){
+            int objeto = localizacion.getObjeto();
+            int habitacion = localizacion.getHabitacion();
+
+            int idxObj = encontrarObjeto(objeto);
+            if (idxObj >= 0) {
+                id_objeto.getSelectionModel().select(idxObj);
+            }
+
+            int idxHab = encontrarHabitacion(habitacion);
+            if (idxHab >= 0) {
+                id_habitacion.getSelectionModel().select(idxHab);
+            }
+        }
     }
 
     public void setEditar(boolean editar){
@@ -117,7 +130,7 @@ public class crearEditarLocalizacion implements Initializable {
         this.localizacion = localizacion;       
         if(editar){
             cargarDatos();
-        } 
+        }
     }
 
     public void setEnlace(MainController mainController){
@@ -127,22 +140,11 @@ public class crearEditarLocalizacion implements Initializable {
 
     private void enviarLocalizacion(){
         if(mainController!=null){
-            this.mainController.recibirLocalizacion(localizacionNueva);
+            this.mainController.recibirLocalizacion(localizacionNueva,localizacion,editar);
         }
     }
 
-    @FXML
-    private void abrirBuscadorHabitaciones(){
-        //TODO buscador
-    }
-
-    @FXML
-    private void abrirBuscadorObjetos(){
-        //TODO buscador
-    }
-
     private void rellenarCombo(){
-        //TODO RELLENAR COMBO
         listaHabitaciones.setAll(rellenarListaHabitaciones());
         listaObjetos.setAll(rellenarListaObjetos());
 
@@ -153,67 +155,63 @@ public class crearEditarLocalizacion implements Initializable {
         id_objeto.setItems(listaObjetos);
         System.out.println("Objetos cargados");
         System.out.println("Lista Habitaciones: "+listaObjetos);
-
     }
 
-    private int pasarListaHabitacionAID(String habitacion){
-        int resultado = -1;
-
-        try {
-            String s = habitacion.substring(1, habitacion.indexOf(")"));
-            return Integer.parseInt(s);
-        } catch (Exception e) {
-            System.out.println("No se ha podido detectar el número");
+    private int encontrarHabitacion(int habitacion){
+        System.out.println("Buscando habitacion");
+        int index = 0;
+        for(int x=0; x<listaHabitaciones.size();x++){
+            if(listaHabitaciones.get(x)==habitacion){
+                index=x;
+            }
         }
-
-        return resultado;
+        System.out.println("Indice de la habitacion: "+habitacion);
+        return index;
     }
 
-    private int pasarListaObjetoAID(String objeto){
-        int resultado = -1;
-
-        try {
-            String s = objeto.substring(1, objeto.indexOf(")"));
-            return Integer.parseInt(s);
-        } catch (Exception e) {
-            System.out.println("No se ha podido detectar el número");
+    private int encontrarObjeto(int objeto){
+        System.out.println("Buscando objeto");
+        int index = 0;
+        for(int x=0; x<listaObjetos.size();x++){
+            if(listaObjetos.get(x)==objeto){
+                index=x;
+            }
         }
-
-        return resultado;
+        System.out.println("Indice del objeto: "+index);
+        return index;
     }
 
-    private ObservableList<String> rellenarListaObjetos(){
+    private ObservableList<Integer> rellenarListaObjetos(){
         ObservableList<Objeto> objetos = this.mainController.dameListaObjetos();
 
-        ObservableList<String> listaVistaCombo = FXCollections.observableArrayList();
-        
+        ObservableList<Integer> objetosID = FXCollections.observableArrayList();
         try {
             for (int x = 0; x < objetos.size(); x++) {
                 Objeto o = objetos.get(x);
-                listaVistaCombo.add("("+o.getId_objeto()+") - "+o.getNombre_objeto());
+                objetosID.add(o.getId_objeto());
             }
         } catch (Exception e) {
             System.out.println("Error recibiendo objetos");
         }
         
-        return listaVistaCombo;
+        return objetosID;
     }
 
-    private ObservableList<String> rellenarListaHabitaciones(){
+    private ObservableList<Integer> rellenarListaHabitaciones(){ 
         ObservableList<Habitacion> habitaciones = this.mainController.dameListaHabitacion();
 
-        ObservableList<String> listaVistaCombo = FXCollections.observableArrayList();
-        
+
+        ObservableList<Integer> habitacionesID = FXCollections.observableArrayList();
         try {
             for (int x = 0; x < habitaciones.size(); x++) {
                 Habitacion h = habitaciones.get(x);
-                listaVistaCombo.add("("+h.getId_Habitacion()+") - Número de habitación: "+h.getNum_Habitacion()+" Pasillo: "+h.getNumPasillo());
+                habitacionesID.add(h.getId_Habitacion());
             }
         } catch (Exception e) {
             System.out.println("Error recibiendo habitaciones");
         }
-        
-        return listaVistaCombo;
+
+        return habitacionesID;
     }
 
     @Override

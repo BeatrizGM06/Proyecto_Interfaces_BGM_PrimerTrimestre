@@ -6,22 +6,20 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import pantallaPrincipal.Localizacion;
 
 public class vistaLocalizacionController implements Initializable {
-    private Localizacion localizacion;
+    private Localizacion localizacion=null;
 
     @FXML
     private CheckBox checkbox_interactuable;
 
     @FXML
-    private ComboBox<String> habitacion;
+    private TextField habitacion;
 
     @FXML
-    private ComboBox<String> objeto;
+    private TextField objeto;
 
     @FXML
     private TextField posX;
@@ -36,17 +34,16 @@ public class vistaLocalizacionController implements Initializable {
     }
 
     private void cargarDatos(){
+        
         checkbox_interactuable.setSelected(localizacion.getInteractuable());
         posX.setText(""+localizacion.getPosicion_x());
         posY.setText(""+localizacion.getPosicion_y());
 
-        //TODO habitacion
-        //TODO objeto
+        objeto.setText(""+localizacion.getObjeto());
+        habitacion.setText(""+localizacion.getHabitacion());
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //Cargar los valores posibles de habitacion y objeto
     }
-    
 }
